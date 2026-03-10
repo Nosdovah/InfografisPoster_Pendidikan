@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infographic Poster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #071529;
+      --bg-darker: #040c17;
+      --gold-dark: #a17822;
+      --gold-main: #d3a44b;
+      --gold-light: #fbe69e;
+      --gold-gradient: linear-gradient(135deg, #a17822 0%, #fbe69e 50%, #d3a44b 100%);
+      --gold-gradient-text: linear-gradient(to right, #a17822, #fbe69e, #a17822);
+      --font-main: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #020611;
+      font-family: var(--font-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: white;
+      padding: 2rem;
+    }
+
+    .poster {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      aspect-ratio: 3 / 4;
+      background: radial-gradient(circle at center top, var(--bg-dark) 0%, var(--bg-darker) 100%);
+      border: 1px solid var(--gold-dark);
+      padding: 2.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(211, 164, 75, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Inner Border */
+    .poster-border {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 2px solid var(--gold-main);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Corner Accents */
+    .corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid var(--gold-light);
+    }
+
+    .corner-tl {
+      top: -2px;
+      left: -2px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .corner-tr {
+      top: -2px;
+      right: -2px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .corner-bl {
+      bottom: -2px;
+      left: -2px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .corner-br {
+      bottom: -2px;
+      right: -2px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .corner::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--gold-light);
+      border-radius: 50%;
+    }
+
+    .corner-tl::after {
+      bottom: -3px;
+      right: -3px;
+    }
+
+    .corner-tr::after {
+      bottom: -3px;
+      left: -3px;
+    }
+
+    .corner-bl::after {
+      top: -3px;
+      right: -3px;
+    }
+
+    .corner-br::after {
+      top: -3px;
+      left: -3px;
+    }
+
+    /* Cross patterns on the background */
+    .bg-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(var(--gold-dark) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gold-dark) 1px, transparent 1px);
+      background-size: 150px 150px;
+      opacity: 0.03;
+      z-index: 1;
+    }
+
+    .bg-map {
+      position: absolute;
+      top: 120px;
+      left: 0;
+      right: 0;
+      height: 300px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg') no-repeat center center;
+      background-size: 90%;
+      opacity: 0.1;
+      filter: invert(72%) sepia(85%) saturate(307%) hue-rotate(1deg) brightness(97%) contrast(85%);
+      z-index: 2;
+    }
+
+    .content {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      background: var(--gold-gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      display: inline-block;
+      position: relative;
+    }
+
+    header h1::before,
+    header h1::after {
+      content: '[';
+      color: var(--gold-main);
+      -webkit-text-fill-color: var(--gold-main);
+      margin-right: 5px;
+    }
+
+    header h1::after {
+      content: ']';
+      margin-right: 0;
+      margin-left: 5px;
+    }
+
+    header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold-main);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    header h2::before,
+    header h2::after {
+      content: '[';
+      margin-right: 5px;
+    }
+
+    header h2::after {
+      content: ']';
+      margin-right: 0;
+      margin-left: 5px;
+    }
+
+    header h2>.lines {
+      position: absolute;
+      top: 50%;
+      width: 150px;
+      height: 1px;
+      background: var(--gold-dark);
+    }
+
+    header h2>.line-left {
+      left: -180px;
+    }
+
+    header h2>.line-right {
+      right: -180px;
+    }
+
+    /* Hero / Central Section */
+    .hero {
+      text-align: center;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .cap-icon {
+      width: 280px;
+      height: auto;
+      filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.6));
+      transform: translateY(-20px);
+    }
+
+    /* Some glowing dots */
+    .glow-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      box-shadow: 0 0 15px 5px rgba(251, 230, 158, 0.5);
+    }
+
+    .dot-1 {
+      top: 20%;
+      left: 10%;
+    }
+
+    .dot-2 {
+      top: 30%;
+      right: 15%;
+    }
+
+    .dot-3 {
+      top: 60%;
+      left: 5%;
+    }
+
+    .dot-4 {
+      top: 50%;
+      right: 5%;
+    }
+
+    /* Features Section */
+    .features {
+      margin-bottom: 2rem;
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .feature-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    .icon-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 90px;
+      margin-bottom: 1.5rem;
+    }
+
+    .icon-wrapper .bracket-l,
+    .icon-wrapper .bracket-r {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 15px;
+      border-top: 2px solid var(--gold-main);
+      border-bottom: 2px solid var(--gold-main);
+    }
+
+    .icon-wrapper .bracket-l {
+      left: 0;
+      border-left: 2px solid var(--gold-main);
+    }
+
+    .icon-wrapper .bracket-r {
+      right: 0;
+      border-right: 2px solid var(--gold-main);
+    }
+
+    /* Corner dots for the bracket */
+    .corner-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold-light);
+      border-radius: 50%;
+    }
+
+    .icon-wrapper .tl-dot {
+      top: -3px;
+      left: -3px;
+    }
+
+    .icon-wrapper .bl-dot {
+      bottom: -3px;
+      left: -3px;
+    }
+
+    .icon-wrapper .tr-dot {
+      top: -3px;
+      right: -3px;
+    }
+
+    .icon-wrapper .br-dot {
+      bottom: -3px;
+      right: -3px;
+    }
+
+    .icon-wrapper i {
+      font-size: 3rem;
+      background: var(--gold-gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .feature-title {
+      color: var(--gold-main);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-desc {
+      color: #b0c4de;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Timeline Divider */
+    .timeline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--gold-dark);
+      z-index: 1;
+    }
+
+    .timeline-node {
+      position: relative;
+      z-index: 2;
+      background: var(--bg-darker);
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: 1.2rem;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .bottom-features {
+      margin-top: 0;
+    }
+
+    .bottom-features .feature-col {
+      padding: 0 15px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--gold-dark);
+      width: 80%;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+
+    /* Footer decorative glowing nodes at ends of line */
+    .footer-divider::before,
+    .footer-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(251, 230, 158, 0.8);
+    }
+
+    .footer-divider::before {
+      left: -3px;
+    }
+
+    .footer-divider::after {
+      right: -3px;
+    }
+
+    footer h3 {
+      font-size: 1.2rem;
+      color: var(--gold-main);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+    }
+
+    footer h3::before,
+    footer h3::after {
+      content: '[';
+    }
+
+    footer h3::after {
+      content: ']';
+    }
+
+    footer p {
+      font-size: 1rem;
+      color: #90a4ae;
+      letter-spacing: 1px;
+    }
+
+    footer p::before,
+    footer p::after {
+      content: '[';
+    }
+
+    footer p::after {
+      content: ']';
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .poster {
+        max-width: 100%;
+        aspect-ratio: auto;
+        padding: 1.5rem;
+      }
+
+      .bg-map {
+        background-size: cover;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header h2 {
+        font-size: 1.2rem;
+      }
+
+      header h2>.lines {
+        display: none;
+      }
+
+      .feature-row {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .timeline-line {
+        display: none;
+      }
+
+      .timeline {
+        display: none;
+      }
+
+      .bottom-features .feature-title {
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+    <div class="bg-lines"></div>
+    <div class="bg-map"></div>
+
+    <div class="poster-border">
+      <div class="corner corner-tl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
+      <div class="corner corner-br"></div>
+    </div>
+
+    <div class="glow-dot dot-1"></div>
+    <div class="glow-dot dot-2"></div>
+    <div class="glow-dot dot-3"></div>
+    <div class="glow-dot dot-4"></div>
+
+    <div class="content">
+      <header>
+        <h1>TITLE PLACEHOLDER</h1>
+        <h2>
+          <span class="lines line-left"></span>
+          SUBTITLE PLACEHOLDER
+          <span class="lines line-right"></span>
+        </h2>
+      </header>
+
+      <section class="hero">
+        <svg class="cap-icon" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldCap" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#b4852d" />
+              <stop offset="30%" stop-color="#fbe69e" />
+              <stop offset="70%" stop-color="#d3a44b" />
+              <stop offset="100%" stop-color="#8a6117" />
+            </linearGradient>
+            <linearGradient id="goldTassel" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d3a44b" />
+              <stop offset="100%" stop-color="#fbe69e" />
+            </linearGradient>
+            <linearGradient id="goldBase" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffe484" />
+              <stop offset="50%" stop-color="#a87f22" />
+              <stop offset="100%" stop-color="#543c05" />
+            </linearGradient>
+          </defs>
+          <!-- Graduation Cap -->
+          <path fill="url(#goldCap)"
+            d="M622.34 153.2L343.4 67.5c-15.2-4.67-31.6-4.67-46.79 0L17.66 153.2c-23.54 7.23-23.54 38.36 0 45.59l281.4 86.6c15.2 4.67 31.6 4.67 46.79 0l281.4-86.6c23.53-7.23 23.53-38.36-4.91-45.59zM192 452.4l114 45.6c9.7 3.9 20.3 3.9 30 0l114-45.6V260.4l-118.8 36.5c-15.2 4.67-31.6 4.67-46.79 0L192 260.4V452.4zm-96-267v162.6c0 15 10 28 24.3 31l49.5 9.9-42.3 25.4a32 32 0 01-32.8 0c-21.6-13-35.3-36.2-35.3-61.9v-138l36.6-29z" />
+
+        </svg>
+      </section>
+
+      <section class="features">
+        <div class="feature-row">
+          <div class="feature-col">
+            <div class="icon-wrapper">
+              <div class="bracket-l"></div>
+              <div class="bracket-r"></div>
+              <div class="corner-dot tl-dot"></div>
+              <div class="corner-dot bl-dot"></div>
+              <div class="corner-dot tr-dot"></div>
+              <div class="corner-dot br-dot"></div>
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 class="feature-title">LOREM IPSUM</h3>
+            <p class="feature-desc">Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit,<br>sed do eiusmod
+              tempor<br>incididunt ut labore.</p>
+          </div>
+          <div class="feature-col">
+            <div class="icon-wrapper">
+              <div class="bracket-l"></div>
+              <div class="bracket-r"></div>
+              <div class="corner-dot tl-dot"></div>
+              <div class="corner-dot bl-dot"></div>
+              <div class="corner-dot tr-dot"></div>
+              <div class="corner-dot br-dot"></div>
+              <i class="fas fa-stethoscope"></i>
+            </div>
+            <h3 class="feature-title">LOREM<br>IPSUM</h3>
+            <p class="feature-desc">Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit.</p>
+          </div>
+          <div class="feature-col">
+            <div class="icon-wrapper">
+              <div class="bracket-l"></div>
+              <div class="bracket-r"></div>
+              <div class="corner-dot tl-dot"></div>
+              <div class="corner-dot bl-dot"></div>
+              <div class="corner-dot tr-dot"></div>
+              <div class="corner-dot br-dot"></div>
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3 class="feature-title">LOREM<br>IPSUM</h3>
+            <p class="feature-desc">Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit.</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-line"></div>
+          <div style="flex: 1; text-align: center;">
+            <div class="timeline-node">1</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div class="timeline-node">2</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div class="timeline-node">3</div>
+          </div>
+        </div>
+
+        <div class="feature-row bottom-features">
+          <div class="feature-col">
+            <h3 class="feature-title">LOREM<br>IPSUM</h3>
+            <p class="feature-desc">Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit,<br>sed do eiusmod
+              tempor<br>incididunt ut labore.</p>
+          </div>
+          <div class="feature-col">
+            <h3 class="feature-title">LOREM<br>IPSUM</h3>
+            <p class="feature-desc">Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit,<br>sed do eiusmod
+              tempor<br>incididunt ut labore.</p>
+          </div>
+          <div class="feature-col">
+            <h3 class="feature-title">LOREM<br>IPSUM</h3>
+            <p class="feature-desc">Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit,<br>sed do eiusmod
+              tempor<br>incididunt ut labore.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-divider"></div>
+        <h3>SCHOLARSHIP NAME</h3>
+        <p>WEBSITE/APPLY NOW</p>
+      </footer>
+    </div>
+  </div>
+
+</body>
+
+</html>
