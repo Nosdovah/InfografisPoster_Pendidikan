@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-dark: #071529;
-      --bg-darker: #040c17;
+      --bg-dark: #122a5c;
+      --bg-darker: #0B1B3D;
       --gold-dark: #a17822;
       --gold-main: #d3a44b;
       --gold-light: #fbe69e;
@@ -127,7 +127,7 @@
       left: -3px;
     }
 
-    /* Cross patterns on the background */
+    /* Diagonal geometric lines on the background */
     .bg-lines {
       position: absolute;
       top: 0;
@@ -135,10 +135,10 @@
       right: 0;
       bottom: 0;
       background-image:
-        linear-gradient(var(--gold-dark) 1px, transparent 1px),
-        linear-gradient(90deg, var(--gold-dark) 1px, transparent 1px);
+        repeating-linear-gradient(45deg, var(--gold-dark) 0, var(--gold-dark) 1px, transparent 1px, transparent 150px),
+        repeating-linear-gradient(-45deg, var(--gold-dark) 0, var(--gold-dark) 1px, transparent 1px, transparent 150px);
       background-size: 150px 150px;
-      opacity: 0.03;
+      opacity: 0.05;
       z-index: 1;
     }
 
@@ -177,6 +177,7 @@
       margin-bottom: 0.5rem;
       background: var(--gold-gradient-text);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
       display: inline-block;
@@ -361,10 +362,14 @@
       right: -3px;
     }
 
-    .icon-wrapper i {
+    .icon-wrapper > i, .icon-wrapper > .fa-stack {
       font-size: 3rem;
+    }
+
+    .icon-wrapper i {
       background: var(--gold-gradient-text);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -616,7 +621,10 @@
               <div class="corner-dot bl-dot"></div>
               <div class="corner-dot tr-dot"></div>
               <div class="corner-dot br-dot"></div>
-              <i class="fas fa-stethoscope"></i>
+              <span class="fa-stack" style="width: 1em; height: 1em; line-height: 1em;">
+                <i class="fas fa-stethoscope fa-stack-1x" style="transform: scale(1.1) translate(-2px, 0);"></i>
+                <i class="fas fa-heart fa-stack-1x" style="transform: scale(0.35) translate(40px, -5px);"></i>
+              </span>
             </div>
             <h3 class="feature-title">LOREM<br>IPSUM</h3>
             <p class="feature-desc">Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit.</p>
